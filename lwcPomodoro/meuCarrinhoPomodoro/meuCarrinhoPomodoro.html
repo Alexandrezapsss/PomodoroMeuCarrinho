@@ -1,0 +1,38 @@
+<template>
+    <!--Fazer um Pomodoro Meu carrinho para produtividade-->
+    <div class="card-alarme">
+        <div class="header-wrapper">
+            <div class="header-image">
+                <img src={imgCarrinho}></img>
+            </div>
+            <header class="titulo"><strong>Meu Carrinho - Pomodoro/Alarme</strong></header>
+        </div>
+        <img src={imgCarrinho} width="150px" height="150px" class={shakeImagem}><!--Lembrar para arrumar o tamanho da imagem e as bordas-->
+        <h2>{tempoAtual}</h2>
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col">
+                <!--Usar componente aula child for child-->
+                <c-componente-alarme label="Hora(s)" opcoes={horas1} id-unico="seleciona-hora"
+                    onoptionhandler={optionhandler}></c-componente-alarme>
+            </div>
+            <div class="slds-col">
+                <c-componente-alarme label="Minuto(s)" opcoes={minutos1} id-unico="seleciona-minuto"
+                    onoptionhandler={optionhandler}></c-componente-alarme>
+            </div>
+            <div class="slds-col">
+                <c-componente-alarme label="AM/PM" opcoes={meridianos} id-unico="seleciona-ampm"
+                    onoptionhandler={optionhandler}></c-componente-alarme>
+            </div>
+        </div>
+        <!--vamos ter uma logica para os botões para aparecer um de cada vez quando um é definido o outro some-->
+        <template if:false={setAlarme}>
+            <button class="slds-button slds-button_neutral slds-button_stretch" disabled={isFieldNotSelected}
+                onclick={setAlarmeHandle}>Ligar Alarme</button>
+        </template>
+        <template if:true={setAlarme}>
+            <!--Botão para limpar o alrme-->
+            <button class="slds-button slds-button_neutral slds-button_stretch" disabled={isFieldNotSelected}
+                onclick={clearAlarmeHandle}>Resetar Alarme</button>
+        </template>
+    </div>
+</template>
